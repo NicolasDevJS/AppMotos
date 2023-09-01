@@ -1,36 +1,54 @@
-import { Bar, Inside, Left, ScreenName, Profile } from './styles';
-
+import React, { useState } from 'react';
+import { View, TouchableOpacity, Text } from 'react-native'; // Importe o componente Text
 import {
-    Entypo, 
-    Ionicons 
-} from '@expo/vector-icons';
+  Bar,
+  Inside,
+  Left,
+  ScreenName,
+  Profile,
+  ProfileInfo,
+  LogOffButton,
+} from './styles';
+import { Entypo, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
+export function Header({ title, screen }) {
+  const navigation = useNavigation();
+  const [isProfileInfoOpen, setProfileInfoOpen] = useState(false);
 
-export function Header({ title, screen}) {
-    const navigation = useNavigation();
-    
-    return (
-        <Bar>
-            <Inside>
-                <Left>
-                    { screen != 'Home' ? (
-                            <>
-                                <Entypo name="chevron-thin-left" size={15} color="#010101" />
-                                <ScreenName>{title}</ScreenName>
-                            </>
-                            
-                        ) :(
-                            <ScreenName>{title}</ScreenName>
-                        )}
-                </Left>
+  const toggleProfileInfo = () => {
+    setProfileInfoOpen(!isProfileInfoOpen);
+  };
 
-                <Profile>
-                    <Ionicons name="ios-person-outline" size={20} color="#010101" />
-                </Profile>
-                
-            </Inside>
+  const handleLogOff = () => {
+    // Implemente a lógica de logoff aqui
+  };
 
-        </Bar>
-);
+  return (
+    <Bar>
+      <Inside>
+        <Left>
+          {screen !== 'Home' && (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Entypo name="chevron-thin-left" size={15} color="#010101" />
+            </TouchableOpacity>
+          )}
+          <ScreenName>{title}</ScreenName>
+        </Left>
+
+        <TouchableOpacity onPress={toggleProfileInfo}>
+          <Profile>
+            <Ionicons name="ios-person-outline" size={20} color="#010101" />
+          </Profile>
+        </TouchableOpacity>
+      </Inside>
+      {isProfileInfoOpen && (
+        <ProfileInfo>
+          <Text>Nome: Erico malandrão</Text>
+          <Text>Telefone: 144644848</Text>
+          <LogOffButton onPress={handleLogOff}>Sair</LogOffButton>
+        </ProfileInfo>
+      )}
+    </Bar>
+  );
 }
