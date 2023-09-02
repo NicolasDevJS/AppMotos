@@ -4,7 +4,7 @@ import * as SC from './styles';
 import { Header } from '../../components/header';
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
-import Order from '../../components/order';
+import Order from '../order';
 
 const LOCATION_TRACKING = 'location-tracking';
 export default function Home({ route }) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as SC from './styles';
-import { Header } from '../header';
+import { Header } from '../../components/header';
 import ordersData from '../../../db.json'; // Importe os dados de ordens
 
 export default function Order() {
