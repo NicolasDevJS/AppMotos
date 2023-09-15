@@ -4,7 +4,8 @@ import * as SC from './styles';
 import { Header } from '../../components/header';
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
-import Order from '../order';
+import OrderCard from '../../components/OrderCard';
+import { ScrollView } from 'react-native'; 
 
 const LOCATION_TRACKING = 'location-tracking';
 export default function Home({ route }) {
@@ -39,22 +40,30 @@ export default function Home({ route }) {
   };
 
   return (
-    <SC.Container>
-      <Header title="Home" screen={route.name} />
-
-      <SC.Content>
+    <ScrollView> 
+      <SC.Container>
+        <Header title="Home" screen={route.name} />
+  
         {locationStarted ? (
-          <SC.EndButton onPress={stopLocationTracking}>
-            <SC.EndText>Parar de receber</SC.EndText>
-          </SC.EndButton>
-        ) : (
-          <SC.StartButton onPress={startLocationTracking}>
-            <SC.StartText>Receber Ordens de Serviço</SC.StartText>
-          </SC.StartButton>
-        )}
-      </SC.Content>
-    </SC.Container>
+          <OrderCard></OrderCard>
+        ) : null }
+  
+        <SC.Content>
+          {locationStarted ? (
+            <SC.EndButton onPress={stopLocationTracking}>
+              <SC.EndText>Parar de receber</SC.EndText>
+            </SC.EndButton>
+          ) : (
+            <SC.StartButton onPress={startLocationTracking}>
+              <SC.StartText>Receber Ordens de Serviço</SC.StartText>
+            </SC.StartButton>
+          )}
+        </SC.Content>
+      </SC.Container>
+    </ScrollView>
   );
+  
+  
 }
 
 TaskManager.defineTask(LOCATION_TRACKING, async ({ data, error }) => {
