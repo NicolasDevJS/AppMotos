@@ -19,6 +19,7 @@ export const Row = styled.View`
   border-radius: 8px;
   background-color: #f1f3f5;
   margin-bottom: 4px;
+  
 `;
 
 export const Left = styled.Text`

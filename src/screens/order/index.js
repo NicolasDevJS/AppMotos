@@ -2,29 +2,13 @@ import React, { useState } from 'react';
 import * as SC from './styles';
 import { Header } from '../../components/header';
 import ordersData from '../../../db.json';
-import { View, Text, TouchableOpacity, Image, Platform, ScrollView } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import SignatureCapture from 'react-native-signature-capture';
+import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import Signature from '../Ass'; 
 
 export default function Order() {
   const [imageUri, setImageUri] = useState(null);
-  const [isVisible, setIsVisible] = useState(false); 
 
   const takePicture = async () => {
-    const result = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.cancelled) {
-      setImageUri(result.uri);
-    }
-  };
-
-  const handleAssinarClick = () => {
-    setIsVisible(true);
   };
 
   return (
@@ -71,23 +55,13 @@ export default function Order() {
               </TouchableOpacity>
             </SC.ButtonStart>            
             <SC.ButtonStart>
-              <TouchableOpacity onPress={handleAssinarClick}>
+              <TouchableOpacity>
                 <SC.TextStart>Assinar</SC.TextStart>
               </TouchableOpacity>
             </SC.ButtonStart>
-            {isVisible && (
-              <SignatureCapture
-                onSaveEvent={(result) => {
-                  console.log(result.encoded);
-                }}
-                onDragEvent={() => {}}
-                style={{ width: 300, height: 150, borderWidth: 1, borderColor: 'black' }}
-              />
-            )}
           </View>
         ))}
       </ScrollView>
-
       {imageUri && (
         <View>
           <Text>Foto tirada:</Text>
@@ -97,4 +71,7 @@ export default function Order() {
     </SC.Container>
   );
 }
+
+
+
 
