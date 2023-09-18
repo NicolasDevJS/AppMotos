@@ -5,6 +5,7 @@ import InformPassword from '../screens/password';
 import Home from '../screens/home';
 import Order from '../screens/order';
 import Splash from '../screens/splash';
+import Demo from '../screens/Assinatura';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ export default function Routes() {
         <Stack.Screen name="InformPassword" component={InformPassword} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Order" component={Order} />
+        <Stack.Screen name="Demo" component={Demo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

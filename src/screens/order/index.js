@@ -3,10 +3,15 @@ import * as SC from './styles';
 import { Header } from '../../components/header';
 import ordersData from '../../../db.json';
 import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
-import Signature from '../Ass'; 
+import { useNavigation } from '@react-navigation/native';
 
 export default function Order() {
   const [imageUri, setImageUri] = useState(null);
+  const navigation = useNavigation();
+
+  const getToken = async () => {
+    navigation.navigate('Demo');
+  };
 
   const takePicture = async () => {
   };
@@ -55,7 +60,7 @@ export default function Order() {
               </TouchableOpacity>
             </SC.ButtonStart>            
             <SC.ButtonStart>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={getToken}>
                 <SC.TextStart>Assinar</SC.TextStart>
               </TouchableOpacity>
             </SC.ButtonStart>
